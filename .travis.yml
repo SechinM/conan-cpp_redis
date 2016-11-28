@@ -6,8 +6,8 @@ language: python
 env:
   global:
     - CONAN_UPLOAD=1
-    - CONAN_REFERENCE="nanomsg/1.0.0"
-    - CONAN_USERNAME="Wi3ard"
+    - CONAN_REFERENCE="redis/1.0.0"
+    - CONAN_USERNAME="SechinM"
     - CONAN_CHANNEL="stable"
     - CONAN_TOTAL_PAGES=1
     - CONAN_CURRENT_PAGE=1
