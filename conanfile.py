@@ -1,9 +1,9 @@
-from conans import ConanFile, CMake
+from conans import ConanFile, CMake, tools
 from conans.tools import replace_in_file
 import os
 import shutil
 
-class nanomsgConan(ConanFile):
+class redisConan(ConanFile):
     name = "redis"
     version = "1.0.0"
     url="https://github.com/SechinM/conan-redis.git"
