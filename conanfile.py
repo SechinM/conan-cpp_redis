@@ -28,9 +28,6 @@ class nanomsgConan(ConanFile):
         self.run("git clone https://github.com/redis/redis.git")
         self.run("cd nanomsg && git checkout tags/1.0.0")
 
-    def build(self):
-        conan_magic_lines = '''#  Platform checks.
-
 # Conan.io config
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
