@@ -23,11 +23,12 @@ class nanomsgConan(ConanFile):
         "enable_tests=False", \
         "enable_tools=True", \
         "enable_nanocat=True"
-
+    tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
+    tools.untargz("redis-stable.tar.gz", "redis-stable")
+    
     def source(self):
-        self.run("git clone https://github.com/redis/redis.git")
-        self.run("cd nanomsg && git checkout tags/1.0.0")
-
+        self.run("cd redis-stable")
+        
     def imports(self):
         self.copy("*.dll", dst="bin", src="bin")
         self.copy("*.dylib*", dst="bin", src="lib")
