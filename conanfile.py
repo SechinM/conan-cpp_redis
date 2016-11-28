@@ -23,10 +23,10 @@ class nanomsgConan(ConanFile):
         "enable_tests=False", \
         "enable_tools=True", \
         "enable_nanocat=True"
-    tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
-    tools.untargz("redis-stable.tar.gz", "redis-stable")
     
     def source(self):
+        tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
+        tools.untargz("redis-stable.tar.gz", "redis-stable")        
         self.run("cd redis-stable")
         
     def imports(self):
