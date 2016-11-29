@@ -25,7 +25,7 @@ class redisConan(ConanFile):
             activated = getattr(self.options, option_name)
             the_option = "%s=" % option_name.upper()
             if option_name == "shared":
-                the_option = "CONAN_STATIC_LIB=OFF" if activated else "CONAN_STATIC_LIB=ON"
+                the_option = "REDIS_STATIC_LIB=OFF" if activated else "REDIS_STATIC_LIB=ON"
             else:
                 the_option += "ON" if activated else "OFF"
             cmake_options.append(the_option)
