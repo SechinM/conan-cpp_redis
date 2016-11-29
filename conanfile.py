@@ -13,11 +13,15 @@ class redisConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = "shared=False"
     
-    def source(self):
-        tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
-        tools.untargz("redis-stable.tar.gz", "redis-stable")        
+    #def source(self):
+    #    tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
+    #    tools.untargz("redis-stable.tar.gz", "redis-stable")        
         
-    def build(self):       
+    def build(self):      
+        tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
+        tools.untargz("redis-stable.tar.gz", "redis-stable")   
+        
+        '''
         cmake = CMake(self.settings)
 
         cmake_options = []
@@ -36,7 +40,7 @@ class redisConan(ConanFile):
         self.output.warn(cmake_conf_command)
         self.run(cmake_conf_command)
         self.run("cd redis-stable && make install %s" % cmake.build_config)
-                   
+           '''        
     
     def imports(self):
         self.copy("*.dll", dst="bin", src="bin")
