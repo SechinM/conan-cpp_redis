@@ -21,7 +21,7 @@ class redisConan(ConanFile):
         tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
         tools.untargz("redis-stable.tar.gz", "redis-stable")       
         
-    #    cmake = CMake(self.settings)
+        cmake = CMake(self.settings)
 
     #    cmake_options = []
     #    for option_name in self.options.values.fields:
