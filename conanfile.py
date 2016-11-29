@@ -23,17 +23,17 @@ class redisConan(ConanFile):
         
         cmake = CMake(self.settings)
 
-    #    cmake_options = []
-    #    for option_name in self.options.values.fields:
-    #        activated = getattr(self.options, option_name)
-    #        the_option = "%s=" % option_name.upper()
-    #        if option_name == "shared":
-    #            the_option = "REDIS_STATIC_LIB=OFF" if activated else "REDIS_STATIC_LIB=ON"
-    #        else:
-    #            the_option += "ON" if activated else "OFF"
-    #        cmake_options.append(the_option)
+        cmake_options = []
+        for option_name in self.options.values.fields:
+            activated = getattr(self.options, option_name)
+            the_option = "%s=" % option_name.upper()
+            if option_name == "shared":
+                the_option = "REDIS_STATIC_LIB=OFF" if activated else "REDIS_STATIC_LIB=ON"
+            else:
+                the_option += "ON" if activated else "OFF"
+            cmake_options.append(the_option)
 
-    #    cmake_cmd_options = " -D".join(cmake_options)
+        cmake_cmd_options = " -D".join(cmake_options)
                 
         #cmake_conf_command = 'cd redis-stable && make install %s' % (self.conanfile_directory, cmake.command_line, cmake_cmd_options)
         #self.output.warn(cmake_conf_command)
