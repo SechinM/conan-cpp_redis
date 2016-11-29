@@ -16,8 +16,11 @@ class redisConan(ConanFile):
     #def source(self):
     #    tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
     #    tools.untargz("redis-stable.tar.gz", "redis-stable")        
+    
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()        
         
-    def build(self):      
+    def build(self):          
         tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
         tools.untargz("redis-stable.tar.gz", "redis-stable")   
         
