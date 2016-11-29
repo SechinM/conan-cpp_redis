@@ -37,9 +37,9 @@ class redisConan(ConanFile):
 
         cmake_cmd_options = " -D".join(cmake_options)
                 
-        cmake_conf_command = 'cd redis-stable && make install %s' % (self.conanfile_directory, cmake.command_line, cmake_cmd_options)
-        self.output.warn(cmake_conf_command)
-        self.run(cmake_conf_command)
+        #cmake_conf_command = 'cd redis-stable && make install %s' % (self.conanfile_directory, cmake.command_line, cmake_cmd_options)
+        #self.output.warn(cmake_conf_command)
+        #self.run(cmake_conf_command)
         self.run("cd redis-stable && make install %s")# % cmake.build_config)
                 
     
@@ -53,12 +53,12 @@ class redisConan(ConanFile):
         self.copy("*.lib", dst="lib", src="install/lib")
         self.copy("*.a", dst="lib", src="install/lib")
         self.copy("*.so*", dst="lib", src="install/lib")
-        self.copy("*.dylib", dst="lib", src="install/lib")
-        self.copy("nanocat*", dst="bin", src="install/bin")
-        self.copy("*.*", dst="lib/pkgconfig", src="install/lib/pkgconfig")
+        #self.copy("*.dylib", dst="lib", src="install/lib")
+        #self.copy("nanocat*", dst="bin", src="install/bin")
+        #self.copy("*.*", dst="lib/pkgconfig", src="install/lib/pkgconfig")
 
     def package_info(self):
         self.cpp_info.libs = ["redis"]
 
         if not self.options.shared:
-            self.cpp_info.defines.extend(["NN_STATIC_LIB=ON"])
+            self.cpp_info.defines.extend(["REDIS_STATIC_LIB=ON"])
