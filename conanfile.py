@@ -40,8 +40,7 @@ class redisConan(ConanFile):
         #cmake_conf_command = 'cd redis-stable && make install %s' % (self.conanfile_directory, cmake.command_line, cmake_cmd_options)
         #self.output.warn(cmake_conf_command)
         #self.run(cmake_conf_command)
-        self.run("cd redis-stable")# % cmake.build_config)
-        self.run("make")
+        self.run("cd redis-stable && make")# % cmake.build_config)
     
     #def imports(self):
     #    self.copy("*.dll", dst="bin", src="bin")
