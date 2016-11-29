@@ -10,19 +10,8 @@ class redisConan(ConanFile):
     generators = "cmake", "txt"
     settings = "os", "compiler", "build_type", "arch"
     short_paths = True
-    options = {"shared": [True, False],
-               "enable_doc": [True, False],
-               "enable_getaddrinfo_a": [True, False],
-               "enable_tests": [True, False],
-               "enable_tools": [True, False],
-               "enable_nanocat": [True, False],
-               }
-    default_options = "shared=False", \
-        "enable_doc=False", \
-        "enable_getaddrinfo_a=True", \
-        "enable_tests=False", \
-        "enable_tools=True", \
-        "enable_nanocat=True"
+    options = {"shared": [True, False]}
+    default_options = "shared=False"
     
     def source(self):
         tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
@@ -36,17 +25,7 @@ class redisConan(ConanFile):
             activated = getattr(self.options, option_name)
             the_option = "%s=" % option_name.upper()
             if option_name == "shared":
-                the_option = "CONAN_STATIC_LIB=OFF" if activated else "NN_STATIC_LIB=ON"
-            elif option_name == "enable_doc":
-                the_option = "CONAN_ENABLE_DOC=ON" if activated else "NN_ENABLE_DOC=OFF"
-            elif option_name == "enable_getaddrinfo_a":
-                the_option = "CONAN_ENABLE_GETADDRINFO_A=ON" if activated else "NN_ENABLE_GETADDRINFO_A=OFF"
-            elif option_name == "enable_tests":
-                the_option = "CONAN_TESTS=ON" if activated else "NN_TESTS=OFF"
-            elif option_name == "enable_tools":
-                the_option = "CONAN_TOOLS=ON" if activated else "NN_TOOLS=OFF"
-            elif option_name == "enable_nanocat":
-                the_option = "CONAN_ENABLE_NANOCAT=ON" if activated else "NN_ENABLE_NANOCAT=OFF"
+                the_option = "CONAN_STATIC_LIB=OFF" if activated else "CONAN_STATIC_LIB=ON"
             else:
                 the_option += "ON" if activated else "OFF"
             cmake_options.append(the_option)
