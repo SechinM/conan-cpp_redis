@@ -23,10 +23,11 @@ class redisConan(ConanFile):
         
         self.run("cd redis-stable")
         
+'''      
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()           
         
-        '''
+        
         cmake = CMake(self.settings)
 
         cmake_options = []
