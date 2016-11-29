@@ -21,12 +21,7 @@ class redisConan(ConanFile):
         tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
         tools.untargz("redis-stable.tar.gz", "redis-stable")   
         
-        self.run("cd redis-stable")
-        
-'''      
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()           
-        
+        self.run("cd redis-stable")      
         
         cmake = CMake(self.settings)
 
@@ -46,7 +41,7 @@ conan_basic_setup()
         self.output.warn(cmake_conf_command)
         self.run(cmake_conf_command)
         self.run("cd redis-stable && make install %s" % cmake.build_config)
-           '''        
+                
     
     def imports(self):
         self.copy("*.dll", dst="bin", src="bin")
