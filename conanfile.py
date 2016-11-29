@@ -28,7 +28,8 @@ class redisConan(ConanFile):
         tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
         tools.untargz("redis-stable.tar.gz", "redis-stable")        
         self.run("cd redis-stable")
-       
+        
+    def build(self):       
     cmake = CMake(self.settings)
 
         cmake_options = []
@@ -36,17 +37,17 @@ class redisConan(ConanFile):
             activated = getattr(self.options, option_name)
             the_option = "%s=" % option_name.upper()
             if option_name == "shared":
-               the_option = "NN_STATIC_LIB=OFF" if activated else "NN_STATIC_LIB=ON"
+               the_option = "CONAN_STATIC_LIB=OFF" if activated else "NN_STATIC_LIB=ON"
             elif option_name == "enable_doc":
-               the_option = "NN_ENABLE_DOC=ON" if activated else "NN_ENABLE_DOC=OFF"
+               the_option = "CONAN_ENABLE_DOC=ON" if activated else "NN_ENABLE_DOC=OFF"
             elif option_name == "enable_getaddrinfo_a":
-               the_option = "NN_ENABLE_GETADDRINFO_A=ON" if activated else "NN_ENABLE_GETADDRINFO_A=OFF"
+               the_option = "CONAN_ENABLE_GETADDRINFO_A=ON" if activated else "NN_ENABLE_GETADDRINFO_A=OFF"
             elif option_name == "enable_tests":
-               the_option = "NN_TESTS=ON" if activated else "NN_TESTS=OFF"
+               the_option = "CONAN_TESTS=ON" if activated else "NN_TESTS=OFF"
             elif option_name == "enable_tools":
-               the_option = "NN_TOOLS=ON" if activated else "NN_TOOLS=OFF"
+               the_option = "CONAN_TOOLS=ON" if activated else "NN_TOOLS=OFF"
             elif option_name == "enable_nanocat":
-               the_option = "NN_ENABLE_NANOCAT=ON" if activated else "NN_ENABLE_NANOCAT=OFF"
+               the_option = "CONAN_ENABLE_NANOCAT=ON" if activated else "NN_ENABLE_NANOCAT=OFF"
             else:
                the_option += "ON" if activated else "OFF"
             cmake_options.append(the_option)
@@ -57,10 +58,8 @@ class redisConan(ConanFile):
         self.output.warn(cmake_conf_command)
         self.run(cmake_conf_command)
 
-self.run("cmake --build . --target install %s" % cmake.build_config)
-            
-            
-cmake_cmd_options = " -D".join(cmake_options)
+        self.run("cmake --build . --target install %s" % cmake.build_config)
+                   
     
     def imports(self):
         self.copy("*.dll", dst="bin", src="bin")
