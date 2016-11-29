@@ -45,7 +45,7 @@ class redisConan(ConanFile):
         self.output.warn(cmake_conf_command)
         self.run(cmake_conf_command)
 
-        self.run("cmake --build . --target install %s" % cmake.build_config)
+        self.run("make install %s" % cmake.build_config)
     
     #def imports(self):
     #    self.copy("*.dll", dst="bin", src="bin")
