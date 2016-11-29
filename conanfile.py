@@ -27,7 +27,6 @@ class redisConan(ConanFile):
     def source(self):
         tools.download("http://download.redis.io/redis-stable.tar.gz", "redis-stable.tar.gz")
         tools.untargz("redis-stable.tar.gz", "redis-stable")        
-        #self.run("cd redis-stable")
         
     def build(self):       
         cmake = CMake(self.settings)
@@ -54,11 +53,10 @@ class redisConan(ConanFile):
 
         cmake_cmd_options = " -D".join(cmake_options)
                 
-        cmake_conf_command = 'make install -D%s' % (self.conanfile_directory, cmake.command_line, cmake_cmd_options)
+        cmake_conf_command = 'cd redis-stable && cmake . %s -D%s' % (self.conanfile_directory, cmake.command_line, cmake_cmd_options)
         self.output.warn(cmake_conf_command)
         self.run(cmake_conf_command)
-
-        self.run("cmake --build . --target install %s" % cmake.build_config)
+        self.run("cd redis-stable && make --build install %s" % cmake.build_config)
                    
     
     def imports(self):
