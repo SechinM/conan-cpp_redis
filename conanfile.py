@@ -4,7 +4,7 @@ import os
 import shutil
 
 class redisConan(ConanFile):
-    name = "Redis"
+    name = "redis"
     version = "1.0.0"
     url="https://github.com/SechinM/conan-redis.git"
     generators = "cmake", "txt"

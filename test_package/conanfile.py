@@ -6,7 +6,7 @@ username = os.getenv("CONAN_USERNAME", "SechinM")
 
 class RedisReuseConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    requires = "Redis/1.0.0@%s/%s" % (username, channel)
+    requires = "redis/1.0.0@%s/%s" % (username, channel)
     generators = "cmake"
 
     def imports(self):
