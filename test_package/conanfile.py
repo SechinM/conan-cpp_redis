@@ -4,9 +4,9 @@ import os
 channel = os.getenv("CONAN_CHANNEL", "stable")
 username = os.getenv("CONAN_USERNAME", "SechinM")
 
-class AsmjitReuseConan(ConanFile):
+class RedisReuseConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    requires = "redis/1.0.0@%s/%s" % (username, channel)
+    requires = "Redis/1.0.0@%s/%s" % (username, channel)
     generators = "cmake"
 
     def imports(self):
