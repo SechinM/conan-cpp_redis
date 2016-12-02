@@ -45,7 +45,3 @@ class redisConan(ConanFile):
  
     def package_info(self):
         self.cpp_info.libs = ["cpp_redis"]
-	
-	
-    	if not self.options.shared:
-	    self.cpp_info.defines.extend(["ASMJIT_STATIC=ON"])
