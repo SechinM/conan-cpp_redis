@@ -13,7 +13,8 @@ class redisConan(ConanFile):
     default_options = "shared=True"
        
     def source(self):
-        self.run("git clone https://github.com/Cylix/cpp_redis.git") 
+        self.run("git clone https://github.com/Cylix/cpp_redis.git")
+        #self.run("cd cpp_redis && git checkout 8f902dae91d87fa0be891d40e5c853762dae6060")  
 	os.mkdir("cpp_redis/build")
     
     def build(self): 
@@ -24,7 +25,7 @@ class redisConan(ConanFile):
             activated = getattr(self.options, option_name)
             the_option = "%s=" % option_name.upper()
             if option_name == "shared":
-                the_option = "CPP_REDIS_STATIC_LIB=OFF" if activated else "CPP_REDIS_STATIC_LIB=ON"
+                the_option = "CPP_REDIS_SHARED_LIB=OFF" if activated else "CPP_REDIS_SHARED_LIB=ON"
             else:
                 the_option += "ON" if activated else "OFF"
             cmake_options.append(the_option)
