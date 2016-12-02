@@ -32,9 +32,9 @@ class redisConan(ConanFile):
 
         cmake_cmd_options = " -D".join(cmake_options)
                 
-        self.run("cd cpp_redis/build && cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..")
-        self.run("cd cpp_redis/build && make")
-        self.run("cd cpp_redis/build && make install")
+        self.run("cd cpp_redis/build && sudo cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..")
+        self.run("cd cpp_redis/build && sudo make")
+        self.run("cd cpp_redis/build && sudo make install")
 
     
     def package(self):
