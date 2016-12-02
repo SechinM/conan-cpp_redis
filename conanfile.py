@@ -14,7 +14,7 @@ class redisConan(ConanFile):
        
     def source(self):
         self.run("git clone https://github.com/Cylix/cpp_redis.git")
-        #self.run("cd cpp_redis && git checkout 8f902dae91d87fa0be891d40e5c853762dae6060")  
+        self.run("cd cpp_redis && git checkout 8f902dae91d87fa0be891d40e5c853762dae6060")  
 	os.mkdir("cpp_redis/build")
     
     def build(self): 
