@@ -38,9 +38,9 @@ class redisConan(ConanFile):
 
     
     def package(self):
-        self.copy("*", dst="bin", src="install/bin")
-        self.copy("*", dst="include", src="install/include")
-	self.copy("*", dst="lib", src="install/lib")
+        self.copy("*", dst="bin", src="/usr/local/bin")
+        self.copy("*", dst="include", src="/usr/local/include")
+	self.copy("*", dst="lib", src="/usr/local/lib")
  
     def package_info(self):
         self.cpp_info.libs = ["cpp_redis"]
