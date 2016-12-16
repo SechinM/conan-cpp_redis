@@ -17,6 +17,9 @@ class redisConan(ConanFile):
         self.run("cd cpp_redis && git checkout 8f902dae91d87fa0be891d40e5c853762dae6060")  
     
     def build(self): 
+	include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+	conan_basic_setup()		
+		
         cmake = CMake(self.settings)
 
         cmake_options = []
