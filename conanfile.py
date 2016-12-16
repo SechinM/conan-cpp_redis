@@ -10,7 +10,7 @@ class redisConan(ConanFile):
     generators = "cmake", "txt"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
-    default_options = "shared=True"
+    default_options = "shared=False"
        
     def source(self):
         self.run("git clone https://github.com/Cylix/cpp_redis.git")
