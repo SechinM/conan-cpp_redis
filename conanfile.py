@@ -32,15 +32,22 @@ class redisConan(ConanFile):
 
         cmake_cmd_options = " -D".join(cmake_options)
                 
-        self.run("cd cpp_redis/build && sudo cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..")
-        self.run("cd cpp_redis/build && sudo make")
-        self.run("cd cpp_redis/build && sudo make install")
+	cmake_conf_command = 'cmake %s/cpp_redis %s -DCMAKE_INSTALL_PREFIX:PATH=install -D%s' % (self.conanfile_directory, cmake.command_line, cmake_cmd_options)
+        self.output.warn(cmake_conf_command)
+        self.run(cmake_conf_command)
+
+	self.run("cmake --build . --target install %s" % cmake.build_config)
+
+
+        #self.run("cd cpp_redis/build && sudo cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..")
+        #self.run("cd cpp_redis/build && sudo make")
+        #self.run("cd cpp_redis/build && sudo make install")
 
     
     def package(self):
-        self.copy("*", dst="bin", src="/usr/local/bin")
-        self.copy("*", dst="include", src="/usr/local/include")
-	self.copy("*", dst="lib", src="/usr/local/lib")
+        self.copy("*", dst="bin", src="install/bin")
+        self.copy("*", dst="include", src="install/include")
+	self.copy("*", dst="lib", src="install/lib")
  
     def package_info(self):
         self.cpp_info.libs = ["cpp_redis"]
