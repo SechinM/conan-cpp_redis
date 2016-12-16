@@ -9,8 +9,8 @@ class redisConan(ConanFile):
     url="https://github.com/SechinM/conan-redis.git"
     generators = "cmake", "txt"
     settings = "os", "compiler", "build_type", "arch"
-    #options = {"shared": [True, False]}
-    #default_options = "shared=False"
+    options = {"shared": [True, False]}
+    default_options = "shared=False"
        
     def source(self):
         self.run("git clone https://github.com/Cylix/cpp_redis.git")
@@ -23,10 +23,10 @@ class redisConan(ConanFile):
         for option_name in self.options.values.fields:
             activated = getattr(self.options, option_name)
             the_option = "%s=" % option_name.upper()
-            #if option_name == "shared":
-            #    the_option = "CPP_REDIS_SHARED_LIB=OFF" if activated else "CPP_REDIS_SHARED_LIB=ON"
-            #else:
-            #    the_option += "ON" if activated else "OFF"
+            if option_name == "shared":
+                the_option = "CPP_REDIS_STATIC_LIB=OFF" if activated else "CPP_REDIS_STATIC_LIB=ON"
+            else:
+                the_option += "ON" if activated else "OFF"
             cmake_options.append(the_option)
 
         cmake_cmd_options = " -D".join(cmake_options)
