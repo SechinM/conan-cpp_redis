@@ -10,4 +10,5 @@ conan_basic_setup()
 
 add_executable(testproj test.cpp)
 
-target_link_libraries(testproj ${CONAN_LIBS})
+target_link_libraries(testproj ${CONAN_LIBS}
+                                cpp_redis)
