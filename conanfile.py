@@ -4,9 +4,9 @@ import os
 import shutil
 
 class redisConan(ConanFile):
-    name = "redis"
+    name = "cpp_redis"
     version = "1.0.0"
-    url="https://github.com/SechinM/conan-redis.git"
+    url="https://github.com/SechinM/conan-cpp_redis.git"
     generators = "cmake", "txt"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
