@@ -52,8 +52,8 @@ class redisConan(ConanFile):
         self.copy("*", dst="include/cpp_redis/network", src="install/include/cpp_redis/network")
         self.copy("*", dst="include/cpp_redis/replies", src="install/include/cpp_redis/replies")	
         self.copy("*", dst="bin", src="install/bin")
-        self.copy("*.a*", dst="lib", src="lib")
-        self.copy("*.so*", dst="lib", src="lib")
+        self.copy("*.a*", dst="lib", src="install/lib")
+        self.copy("*.so*", dst="lib", src="install/lib")
  
     def package_info(self):
         self.cpp_info.libs = ["cpp_redis"]
